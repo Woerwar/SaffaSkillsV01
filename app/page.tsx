@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Search, MapPin, Clock, Zap } from 'lucide-react'
 
-// Sample jobs data
+// Simple jobs data
 const jobs = [
   {
     id: 1,
@@ -14,7 +14,6 @@ const jobs = [
     type: "Weekend Work",
     posted: "2 hours ago",
     description: "Looking for reliable cleaner for weekend house cleaning. Own transport preferred.",
-    duration: "2 days",
     urgent: true,
   },
   {
@@ -26,7 +25,6 @@ const jobs = [
     type: "Flexible Hours",
     posted: "1 hour ago",
     description: "Deliver food with your own vehicle. Work when you want, earn what you need.",
-    duration: "Ongoing",
     urgent: false,
   },
 ]
@@ -34,10 +32,14 @@ const jobs = [
 export default function SaffaSkills() {
   const [searchTerm, setSearchTerm] = useState("")
 
+  const handleSearch = () => {
+    alert(`Searching for: ${searchTerm}`)
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md shadow-sm border-b border-white/20 sticky top-0 z-50">
+      <header className="bg-white shadow-sm border-b sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center gap-3">
@@ -52,7 +54,10 @@ export default function SaffaSkills() {
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <button className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 shadow-lg text-white px-6 py-2 rounded-lg font-medium">
+              <button 
+                className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 shadow-lg text-white px-6 py-2 rounded-lg font-medium transition-all"
+                onClick={() => alert('Sign up clicked!')}
+              >
                 Sign up
               </button>
             </div>
@@ -100,7 +105,10 @@ export default function SaffaSkills() {
                       <option>Durban</option>
                     </select>
                   </div>
-                  <button className="h-16 text-lg bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 rounded-2xl shadow-lg text-white font-medium">
+                  <button 
+                    onClick={handleSearch}
+                    className="h-16 text-lg bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 rounded-2xl shadow-lg text-white font-medium transition-all"
+                  >
                     Find Work
                   </button>
                 </div>
@@ -150,7 +158,7 @@ export default function SaffaSkills() {
                   </div>
                   <div className="flex items-center gap-1 text-gray-500">
                     <Clock className="h-4 w-4" />
-                    <span className="text-sm">{job.duration}</span>
+                    <span className="text-sm">Posted {job.posted}</span>
                   </div>
                 </div>
 
@@ -158,14 +166,67 @@ export default function SaffaSkills() {
                   <span className="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm">
                     {job.type}
                   </span>
-                  <button className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 shadow-lg text-white px-6 py-2 rounded-lg font-medium">
+                  <button 
+                    onClick={() => alert(`Applied for: ${job.title}`)}
+                    className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 shadow-lg text-white px-6 py-2 rounded-lg font-medium transition-all"
+                  >
                     Apply Now
                   </button>
                 </div>
-
-                <div className="mt-4 text-xs text-gray-500">Posted {job.posted}</div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="py-16 bg-emerald-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h3 className="text-3xl font-bold text-gray-900 mb-4">Need Help?</h3>
+          <p className="text-xl text-gray-600 mb-8">Get in touch with us - we're here to help!</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow">
+              <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-white text-2xl">📱</span>
+              </div>
+              <h4 className="text-xl font-bold mb-2">WhatsApp Support</h4>
+              <p className="text-gray-600 mb-4">Quick help via WhatsApp</p>
+              <button 
+                onClick={() => window.open('https://wa.me/27795167553?text=Hi%20SaffaSkills!%20I%20need%20help%20with%20the%20platform.', '_blank')}
+                className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg font-medium transition-all"
+              >
+                Chat on WhatsApp
+              </button>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow">
+              <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-white text-2xl">📧</span>
+              </div>
+              <h4 className="text-xl font-bold mb-2">Email Support</h4>
+              <p className="text-gray-600 mb-4">Send us an email anytime</p>
+              <button 
+                onClick={() => window.open('mailto:saffaskillssa@gmail.com', '_blank')}
+                className="border border-blue-500 text-blue-500 hover:bg-blue-50 px-6 py-2 rounded-lg font-medium transition-all"
+              >
+                saffaskillssa@gmail.com
+              </button>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow">
+              <div className="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-white text-2xl">📞</span>
+              </div>
+              <h4 className="text-xl font-bold mb-2">Call Us</h4>
+              <p className="text-gray-600 mb-4">Speak to us directly</p>
+              <button 
+                onClick={() => window.open('tel:+27795167553', '_blank')}
+                className="border border-purple-500 text-purple-500 hover:bg-purple-50 px-6 py-2 rounded-lg font-medium transition-all"
+              >
+                +27795167553
+              </button>
+            </div>
           </div>
         </div>
       </section>
